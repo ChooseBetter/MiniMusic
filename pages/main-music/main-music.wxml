@@ -1,0 +1,82 @@
+<!--pages/main-music/main-music.wxml-->
+
+<!-- 1.搜索框 -->
+<van-search
+  value="{{ searchValue }}"
+  shape="round"
+  background="#fafafa"
+  placeholder="请输入搜索关键词"
+  bind:click-input="onSearchClick"
+/>
+
+<!-- 2.轮播图 -->
+<swiper 
+  class="banner" 
+  circular 
+  indicator-dots
+  style="height: {{ bannerHeight }}px;"
+  wx:if="{{ banners.length }}"
+>
+  <block wx:for="{{ banners }}" wx:key="targetId">
+    <swiper-item class="item">
+      <image
+       class="banner-image"
+       src="{{ item.imageUrl }}" 
+       mode="widthFix"
+       bindload="onBannerImageLoad"
+       />
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 3.推荐歌曲 -->
+<view class="recomment" wx:if="{{ recommendSongs.length }}">
+  <area-header title="推荐歌曲" bind:moreclick="onRecommendMoreClick"/>
+  <view class="list">
+    <block wx:for="{{ recommendSongs }}" wx:key="id">
+      <song-item-v1 itemData="{{ item }}" data-index="{{ index }}" bindtap="onSongItemTap"/>
+    </block>
+  </view>
+</view>
+
+<!-- 4.热门歌单 -->
+<menu-area title="热门歌单" menuList="{{ hotMenuList }}"/>
+
+<!-- 5.推荐歌单 -->
+<menu-area title="推荐歌单" menuList="{{ recMenuList }}"/>
+
+<!-- 6.巅峰榜 -->
+<view class="ranking" wx:if="{{ isRankingData }}">
+  <area-header title="巅峰榜" hasMore="{{false}}" />
+  <view class="ranking-list">
+    <block wx:for="{{ rankingInfos }}" wx:key="id">
+      <ranking-item itemData="{{ item }}" key="{{ index }}"/>
+    </block>
+  </view>
+</view>
+
+
+<!-- 6.播放工具栏 -->
+<view class="play-bar-placeholder" wx:if="{{ !currentSong.name || isPlaying}}"></view>
+<view class="play-bar" wx:if="{{ currentSong.name || isPlaying }}">
+  <view class="left">
+    <image 
+      class="album album-anim" 
+      src="{{ currentSong.al.picUrl }}"
+      style="animation-play-state: {{ isPlaying ? 'running' : 'paused' }};"
+      bindtap="onPlayBarAlbumTap"
+    />
+    <view class="name">{{ currentSong.name }}</view>
+  </view>
+  <view class="right">
+    <image 
+      class="icon" 
+      src="/assets/images/music/{{ isPlaying ? 'pause' : 'play' }}_icon.png"
+      bindtap="onPlayPauseBtnTap"
+    />
+    <image 
+      class="icon" 
+      src="/assets/images/music/playlist_icon.png" 
+    />
+  </view>
+</view>

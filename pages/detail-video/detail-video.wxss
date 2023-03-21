@@ -1,0 +1,127 @@
+/* pages/detail-video/detail-video.wxss */
+page{
+  height: 100vh; 
+}
+/* 视频 */
+.video{
+  width: 100%;
+}
+
+/* 标签 */
+.tabs-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20rpx;
+  height: 70rpx;
+}
+.tabs-container .tabs{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+}
+.tabs-container .tabs .tab{
+  height: 50rpx;
+  box-sizing: border-box;
+}
+.tabs-container .tabs .tab text{
+  font-size: 20rpx;
+}
+.tabs-container .danmu{
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  height: 50rpx;
+}
+.tabs-container .danmu{
+  background-color: #eee;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+.tabs-container .danmu input{
+  width: 200rpx;
+  padding: 0 20rpx;
+  font-size: 26rpx;
+}
+.tabs-container .danmu text{
+  width: 100rpx;
+  background-color: #fff;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 44rpx;
+}
+
+.active{
+  border-bottom: 3px solid red;
+  color: red;
+}
+
+/* 内容 */
+.content{
+  height: calc(100% - 260px);
+}
+.content .container .info{
+  color: #888;
+  margin: 0 26rpx 20rpx 26rpx;
+}
+.content .container .info .title{
+  font-size: 40rpx;
+  font-weight: 700;
+  color: black;
+}
+.content .container .info .title .alias{
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+.content .container .info .desc-container{
+  display: flex;
+  justify-content: space-between;
+}
+.content .container .info .desc-container .desc{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 500rpx;
+  will-change: max-height;
+  transition: all 1s linear;
+}
+.content .container .info .desc-container .nowRap{
+  white-space: nowrap;
+  max-height: 40rpx;
+}
+
+
+/* 相关视频 */
+.related-video .item{
+  display: flex;
+  justify-content: left;
+  padding: 20rpx 0;
+  border-top: 1px solid #eee;
+}
+.related-video .item .img{
+  margin: 0 26rpx;
+}
+.related-video .item .img image{
+  width: 280rpx;
+}
+.related-video .item .relatedInfo{
+  font-size: 26rpx;
+  color: #aaa;
+}
+.related-video .item .relatedInfo view{
+  padding-bottom: 10rpx;
+}
+.related-video .item .relatedInfo .title {
+  height: 64rpx;
+  font-weight: 700;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000;
+}
+.related-video .item .relatedInfo .playCount image{
+  width: 40rpx;
+  height: 40rpx;
+}

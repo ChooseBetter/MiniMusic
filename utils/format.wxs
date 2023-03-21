@@ -1,0 +1,47 @@
+function formatPrice(price){
+  return '￥' + price
+}
+
+function calcPrice(books){
+  return "￥" + books.reduce(function(preValue, item){
+    return preValue + item.price
+  },0)
+}
+
+// 对count进行格式化
+function formatCount(count){
+  var numCount = parseInt(count)
+  if(numCount >= 100000000){
+    return (numCount / 100000000).toFixed(1) + "亿"
+  }else if(numCount >= 10000){
+    return (numCount / 10000).toFixed(1) + "万"
+  }else{
+    return numCount
+  }
+}
+
+function padLeft(time){
+  time = time + ""
+  return ("00" + time).slice(time.length)
+}
+
+// 对item进行格式化
+// 100 -> 01:40
+function formatTime(time){
+  // 将毫秒转成秒钟
+  time = time / 1000
+  // 1.获取时间
+  var minute = Math.floor(time / 60)
+  var second = Math.floor(time) % 60
+
+  // 2.拼接字符串
+  return minute + ":" + padLeft(second)
+}
+
+// 导出后，才能被调用,必须使用CommonJS导出
+module.exports = {
+  formatPrice: formatPrice,
+  calcPrice: calcPrice,
+  formatCount: formatCount,
+  formatTime: formatTime
+}

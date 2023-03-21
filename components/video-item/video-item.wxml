@@ -1,0 +1,13 @@
+<!--components/video-item/video-item.wxml-->
+<wxs module="fmt" src="/utils/format.wxs"></wxs>
+
+<view class="item" bindtap="onItemTap">
+  <view class="album">
+    <image class="image" mode="widthFix" src="{{ itemData.cover }}" alt=""/>
+    <view class="info">
+      <view class="count">{{ fmt.formatCount(itemData.playCount) }}</view>
+      <view class="duration">{{ fmt.formatTime(itemData.mv.videos[0].duration) }}</view>
+    </view>
+  </view>
+  <view class="content">{{ itemData.name }} - {{ itemData.artistName }}</view>
+</view>

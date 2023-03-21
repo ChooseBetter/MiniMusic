@@ -1,0 +1,66 @@
+<!--pages/detail-video/detail-video.wxml-->
+
+<wxs src="/utils/format.wxs" module="fmt"></wxs>
+
+<!-- 1.video组件播放视频 -->
+<video 
+  class="video" 
+  src="{{ mvUrl }}" 
+  autoplay
+  danmu-list="{{ danmuList }}"
+  referrer-plicy="origin"
+/>
+<view class="tabs-container">
+  <view class="tabs">
+    <view class="tab {{ currentTabIndex === 0 ? 'active' : '' }}" bindtap="onChangeTabTap" data-index="{{0}}">详情</view>
+    <view class="tab {{ currentTabIndex === 1 ? 'active' : '' }}" bindtap="onChangeTabTap" data-index="{{1}}">
+      评论<text>{{ mvInfo.commentCount  }}</text>
+    </view>
+  </view>
+  <view class="danmu">
+    <input type="text" value="{{ sendContent }}" bindblur="onSendContentInput"/>
+    <text bindtap="onSendContent">发送</text>
+  </view>
+</view>
+<scroll-view class="content" scroll-y>
+  <view class="container" wx:if="{{ currentTabIndex === 0 }}">
+    <view class="info">
+      <view class="title">
+        {{ mvInfo.name }}
+        <text class="alias">——{{ mvInfo.alias }}</text>
+      </view>
+      <view>{{ mvInfo.artistName }}</view>
+      <view 
+        class="desc-container"  bindtap="onChangeNowRap"
+        wx:if="{{ mvInfo.desc }}"
+      >
+        <view class="desc {{ isNowRap ? 'nowRap' : 'null' }}">{{ mvInfo.desc }}</view>
+        <view class="icon">
+          <van-icon name="arrow-down" wx:if="{{ isNowRap }}"/>
+          <van-icon name="arrow-up" wx:else />
+        </view>
+      </view>
+    </view>
+
+    <view class="related-video">
+      <block wx:for="{{ relatedVideo }}" wx:key="vid">
+        <view class="item">
+          <view class="img" >
+            <image src="{{ item.coverUrl }}" mode="widthFix"></image>
+          </view>
+          <view class="relatedInfo">
+            <view class="title">{{ item.title }}</view>
+            <view class="creator">{{ item.creator[0].userName }}</view>
+            <view class="playCount">
+              <image src="../../assets/images/icons/play_icon.png"/>
+              {{ fmt.formatCount(item.playTime) }}
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="comment" wx:else>
+    评论区为空
+  </view>
+</scroll-view>

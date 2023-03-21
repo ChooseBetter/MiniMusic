@@ -1,0 +1,24 @@
+<!--pages/detail-search/detail-search.wxml-->
+
+<view class="search">
+    <van-icon class="icon" name="comment-o" size="50rpx"/>
+    <input type="text"/>
+    <view class="line"></view>
+    <text class="searchBtn">搜索</text>
+</view>
+<view class="recommend">
+  <view class="tabs">
+    <view class="{{ curTabIndex === 0 ? 'active' : '' }}"  bindtap="onTabTap" data-tabIndex="{{0}}">新歌榜</view>
+    <view class="{{ curTabIndex === 1 ? 'active' : '' }}"  bindtap="onTabTap" data-tabIndex="{{1}}">飙升榜</view>
+    <view class="{{ curTabIndex === 2 ? 'active' : '' }}"  bindtap="onTabTap" data-tabIndex="{{2}}">原创榜</view>
+  </view>
+  <view class="content">
+    <view class="item" wx:for="{{ curSongs }}" wx:key="*this" bindtap="onItemTap" data-item="{{item}}">
+      <view class="left">
+        <text>{{ index + 1 }}</text>
+        <text>{{ item.name }}</text>
+      </view>
+      <text>12131</text>
+    </view>
+  </view>
+</view>
